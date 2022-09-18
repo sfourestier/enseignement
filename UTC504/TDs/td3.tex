@@ -1,0 +1,142 @@
+\documentclass[10pt]{article}
+
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{url}
+% to be able to resume enumerations
+\usepackage{mdwlist}
+\usepackage{url}
+% so as to print code
+\usepackage{listings}
+% various types of underlining
+\usepackage{ulem}
+\normalem
+% math environments
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{setspace}
+%\doublespace
+\usepackage{pxfonts} % lJoin and rJoin
+
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remarque}[section]
+
+%\geometry{hmargin=2cm, vmargin=2cm, lmargin=2cm, rmargin=2cm}
+\geometry{lmargin=2cm, rmargin=2cm, vmargin=2cm}
+%\pagestyle{empty}
+
+% Configuration
+% correction
+\newif\ifcorrection
+\correctiontrue
+%\correctionfalse
+
+\title{Travaux dirigés : Modèle relationnel (suite)\ifcorrection \\ Correction \fi}
+\date{}
+
+\begin{document}
+% algorithm style
+\lstset{
+keywords={select,from,where,and,order,by,is,not,null,group,having,desc,union,
+intersect,minus,or,as,distinct,insert,into,delete,values,commit,update,set},
+keywordstyle=\bfseries,         % bold keyword
+basicstyle=\small,              % print whole listing small
+commentstyle=\itshape,          % default
+stringstyle=\ttfamily,          % typewriter font for strings 
+tabsize=2,                      % pellegrini's favorite number ^^ 
+numbers=left,                   % line numbers
+numberstyle=\tiny,              % line numbers size 
+stepnumber=2,                   % line numbers step 
+numbersep=5pt,                  % line numbers sep ;)
+frame=single,                   % enable frame
+mathescape=false                % math on listings
+}
+
+\maketitle
+
+\section{Produit-fournisseur}
+
+On considère la base de données suivante :\\
+Produit : \texttt{numprod}, \texttt{nomprod}, \texttt{quantité}.\\
+Fournisseur : \texttt{numfour}, \texttt{nomfour}, \texttt{adresse},
+\texttt{ville}.
+
+\begin{enumerate}
+  \item Donner un schéma conceptuel et un schéma relationnel.
+      \ifcorrection
+      \begin{center}
+          \includegraphics[width=0.6\linewidth]{td3ex2.1.png}
+      \end{center}
+      \begin{center}
+          \includegraphics[width=0.6\linewidth]{td3ex2.2.png}
+      \end{center}
+      \fi
+  % \item Donner une expression algébrique et un arbre algébrique pour chacune des
+  %   requêtes suivantes:
+  %   \begin{itemize}
+  %     \item Les fournisseurs qui vendent tous les produits.
+  %     \item Les produits disponibles sur Bordeaux.
+  %   \end{itemize}
+\end{enumerate}
+
+\section{Passage au relationnel (synthèse) --- Le cinéma du premier art\dots}
+
+On considère le schéma conceptuel suivant :
+\begin{center}
+  \includegraphics[width=0.6\linewidth]{td3ex1.png}
+\end{center}
+
+\begin{enumerate}
+  \item Donner un schéma relationnel correspondant.
+      \ifcorrection
+      \begin{center}
+          \includegraphics[width=0.6\linewidth]{td3ex1.1.png}
+      \end{center}
+      \fi
+\end{enumerate}
+
+
+%\vfill
+%\begin{figure}[htb]
+%\emph{Astuce \emph{prévue mais sympa} n\up{o}2 des TDs de SGBD} :
+%
+%\ \\
+%Vous être impatient et vous voulez connaître la signification de \emph{troisème
+%forme normale} en avant première\dots\ Vous voulez tout connaître sur la SGBD
+%pour pouvoir faire des supers projets!
+%
+%Voici l'adresse du manuel du parfait SGBDien (merci à Cyril \textsc{Gruau}):\\
+%\url{ftp://ftp-developpez.com/cyril-gruau/ConceptionBD.pdf}.
+%
+%\ \\
+%
+%\emph{Hors série « culture scientifique » \emph{imprévu et un peu décalé}
+%n\up{o}1 des TDs de SGBD} :
+%
+%\ \\
+%Jean-Marc Jancovici, éminant acteur français de renommée internationnale du fait
+%de son expertise en courts métrages d'action aux sénarios se déroulant
+%traditionnellement en climat extrême, a sorti il y a peu, un zapping à la fois
+%complet et synthétique, résumant en moins de 1h43 la série de 16 épisodes d'1h qui
+%l'a rendu célèbre\footnote{Ah!\dots\ on me souffle à l'oreillette que ces
+%épisodes sont disponible en ligne depuis le début de la semaine:\\
+%\url{http://www.ensmp.fr/ingenieurcivil/SitesIC/Balado/Climat_som.html}.}\dots
+%
+%La version complète (autrement appelée \emph{version premium}) du zapping a été
+%retrouvée pour la dernière fois à l'adresse suivante :\\
+%\url{http://storage02.brainsonic.com/customers2/entrecom/20080227_Spie/session_1_fr_new/files/index.html}
+%
+%\ \\
+%\flushright{À la prochaine avec les TD de SGBD !}
+%\end{figure}
+
+\end{document}

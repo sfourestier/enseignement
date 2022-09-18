@@ -1,0 +1,445 @@
+\documentclass[10pt]{article}
+
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{url}
+% to be able to resume enumerations
+\usepackage{mdwlist}
+\usepackage{url}
+% so as to print code
+\usepackage{listings}
+% various types of underlining
+\usepackage{ulem}
+\normalem
+% math environments
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{setspace}
+%\doublespace
+\usepackage{pxfonts} % lJoin and rJoin
+
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remarque}[section]
+
+%\geometry{hmargin=2cm, vmargin=2cm, lmargin=2cm, rmargin=2cm}
+\geometry{lmargin=2cm, rmargin=2cm, vmargin=2cm}
+%\pagestyle{empty}
+
+% Configuration
+% correction
+\newif\ifcorrection
+\correctiontrue
+%\correctionfalse
+
+\title{Travaux dirigés : Modèle relationnel\footnote{Si vous trouvez des erreurs,
+que vous trouvez certaines phrases mal rédigées, qu'il manque ou qu'il y a trop
+d'informations à certains endroits, alors, vous pouvez apporter votre
+contribution via le dépôt \texttt{github} :
+\texttt{https://github.com/sfourestier/enseignement}.}
+\ifcorrection \\ Correction \fi}
+\date{}
+
+\begin{document}
+% algorithm style
+\lstset{
+keywords={select,from,where,and,order,by,is,not,null,group,having,desc,union,
+intersect,minus,or,as,distinct,insert,into,delete,values,commit,update,set},
+keywordstyle=\bfseries,         % bold keyword
+basicstyle=\small,              % print whole listing small
+commentstyle=\itshape,          % default
+stringstyle=\ttfamily,          % typewriter font for strings 
+tabsize=2,                      % pellegrini's favorite number ^^ 
+numbers=left,                   % line numbers
+numberstyle=\tiny,              % line numbers size 
+stepnumber=2,                   % line numbers step 
+numbersep=5pt,                  % line numbers sep ;)
+frame=single,                   % enable frame
+mathescape=false                % math on listings
+}
+
+\maketitle
+
+% \section{Algèbre relationnelle}
+
+% Soient les relations suivantes: \\
+
+% \begin{minipage}{0.3\linewidth}
+%   \begin{center}
+%     \begin{tabular}{|c|c|c|}
+%       \hline
+%       \multicolumn{3}{|c|}{\emph{R}} \\
+%       \hline
+%       A & B & C \\
+%       \hline
+%       1 & 2 & 3 \\
+%       \hline
+%       4 & 5 & 6 \\
+%       \hline
+%       7 & 0 & 5 \\ 
+%       \hline
+%       4 & 5 & 6 \\
+%       \hline
+%     \end{tabular}
+%   \end{center}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.3\linewidth}
+%   \begin{center}
+%     \begin{tabular}{|c|c|}
+%       \hline
+%       \multicolumn{2}{|c|}{\emph{S}} \\
+%       \hline
+%       C & D \\
+%       \hline
+%       6 & 1 \\
+%       \hline
+%       1 & 0 \\
+%       \hline
+%       3 & 9 \\
+%       \hline
+%       6 & 5 \\
+%       \hline
+%     \end{tabular}
+%   \end{center}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.3\linewidth}
+%   \begin{center}
+%     \begin{tabular}{|c|c|}
+%       \hline
+%       \multicolumn{2}{|c|}{\emph{T}} \\
+%       \hline
+%       D & E \\
+%       \hline
+%       2 & 4 \\
+%       \hline
+%       6 & 8 \\
+%       \hline
+%       6 & 1 \\
+%       \hline
+%       3 & 9 \\
+%       \hline
+%     \end{tabular}
+%   \end{center}
+% \end{minipage}
+% \\ \ \\
+% Calculer:
+
+% \begin{enumerate}
+%   \item $\Pi_{A,B}(R)$ ;
+%     \ifcorrection
+%   \begin{center}
+%     \begin{tabular}{|c|c|}
+%       \hline
+%       A & B \\
+%       \hline
+%       1 & 2 \\
+%       \hline
+%       4 & 5 \\
+%       \hline
+%       7 & 0 \\
+%       \hline
+%     \end{tabular}
+%   \end{center}
+%     \fi
+%   \item $\Pi_{C}(S)$ ;
+%     \ifcorrection
+%   \begin{center}
+%     \begin{tabular}{|c|c|}
+%       \hline
+%       C \\
+%       \hline
+%       6 \\
+%       \hline
+%       1 \\
+%       \hline
+%       3 \\
+%       \hline
+%     \end{tabular}
+%   \end{center}
+%     \fi
+%   \item $S - T$ ;
+%     \ifcorrection
+%   \begin{center}
+%     \begin{tabular}{|c|c|}
+%       \hline
+%       6 & 1 \\
+%       \hline
+%       3 & 9 \\
+%       \hline
+%     \end{tabular}
+%   \end{center}
+%     \fi
+%   \item $\sigma_{A>C}(R)$ ;
+%     \ifcorrection
+%     \begin{center}
+%     \begin{tabular}{|c|c|c|}
+%       \hline
+%       A & B & C \\
+%       \hline
+%       7 & 0 & 5 \\
+%       \hline
+%     \end{tabular}
+%     \end{center}
+%     \fi
+%   \item $\Join_{B<D}(R,T)$ ;
+%     \ifcorrection
+%     \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|}
+%       \hline
+%       A & B & C & D & E \\
+%       \hline
+%       1 & 2 & 3 & 6 & 8 \\
+%       \hline
+%       1 & 2 & 3 & 6 & 1 \\
+%       \hline
+%       1 & 2 & 3 & 3 & 9 \\
+%       \hline
+%       4 & 5 & 6 & 6 & 8 \\
+%       \hline
+%       4 & 5 & 6 & 6 & 1 \\
+%       \hline
+%       7 & 0 & 5 & 2 & 4 \\
+%       \hline
+%       7 & 0 & 5 & 6 & 8 \\
+%       \hline
+%       7 & 0 & 5 & 6 & 1 \\
+%       \hline
+%       7 & 0 & 5 & 3 & 9 \\
+%       \hline
+%       4 & 5 & 6 & 6 & 8 \\
+%       \hline
+%       4 & 5 & 6 & 6 & 1 \\
+%       \hline
+%     \end{tabular}
+%     \end{center}
+%     \fi
+%   \item $\Join(R,S)$ ;
+%     \ifcorrection
+%     \begin{center}
+%     \begin{tabular}{|c|c|c|c|}
+%       \hline
+%       A & B & C & D \\
+%       \hline
+%       1 & 2 & 3 & 9 \\
+%       \hline
+%       4 & 5 & 6 & 1 \\
+%       \hline
+%       4 & 5 & 6 & 5 \\
+%       \hline
+%       4 & 5 & 6 & 1 \\
+%       \hline
+%       4 & 5 & 6 & 5 \\
+%       \hline
+%     \end{tabular}
+%     \end{center}
+%     \fi
+%   \item Les semi-jointures de $R$ et $S$ ($\lJoin(R,S)$ et $\rJoin(R,S)$).
+%     \ifcorrection
+%     \begin{itemize}
+%       \item $\lJoin(R,S)$ :
+%         \begin{center}
+%     \begin{tabular}{|c|c|c|}
+%       \hline
+%       A & B & C \\
+%       \hline
+%       1 & 2 & 3 \\
+%       \hline
+%       4 & 5 & 6 \\
+%       \hline
+%       4 & 5 & 6 \\
+%       \hline
+%       4 & 5 & 6 \\
+%       \hline
+%       4 & 5 & 6 \\
+%       \hline
+%     \end{tabular}
+%         \end{center}
+%       \item $\rJoin(R,S)$ :
+%         \begin{center}
+%     \begin{tabular}{|c|c|}
+%       \hline
+%       C & D \\
+%       \hline
+%       3 & 9 \\
+%       \hline
+%       6 & 1 \\
+%       \hline
+%       6 & 5 \\
+%       \hline
+%       6 & 1 \\
+%       \hline
+%       6 & 5 \\
+%       \hline
+%     \end{tabular}
+%         \end{center}
+%     \end{itemize}
+%     \fi
+% \end{enumerate}
+
+\section{Le cinéma du troisième art\dots}
+Un cinéma comporte plusieurs salles définies par un identifiant et une
+capacité ; où différents films, définis par le titre et le genre, sont
+projetés.
+\begin{enumerate}
+  \item On suppose que le horaires ne sont pas fixes, proposez un schéma
+    conceptuel.
+    \ifcorrection
+  \begin{center}
+   \includegraphics[width=0.7\linewidth]{td2ex2.1.png}
+  \end{center}
+    \fi
+  \item Il y a t-il des modifications à apporter au schéma précédent si l'on
+    suppose maintenant que les films sont projetés à des horaires précises ? Par
+    exemple, tous les films sont projetés, soit entre 16h et 18h, soit entre
+    20h et 22h, etc. Si oui, adapter le schéma conceptuel\dots
+    \ifcorrection
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{td2ex2.2.png}
+  \end{center}
+    \fi
+  \item Comment modifier le schéma conceptuel pour indiquer qu'à un horaire
+    donné, il n'y a qu'un seul film ?
+    \ifcorrection
+    \\\emph{Ce n'est pas possible, il faut utiliser dans contraintes
+    d'intégrités.}
+    \fi
+\end{enumerate}
+\section{Bibliothèque d'emprunts}
+
+On considère une base de données pour gérer une bibliothèque d'emprunts.
+L'interview des bibliothécaires permet de déterminer les faits suivants:
+\begin{itemize}
+  \item un livre est caractérisé par un numéro, un éditeur et un auteur ;
+  \item un adhérent qui s'inscrit à la bibliothèque verse une caution ;
+  \item les emprunts durent au maximum 8 jours ;
+  \item on veut pouvoir obtenir, pour chaque adhérent les emprunts qu'il a
+    effectué (nombre, numéro et titre du livre, date de l'emprunt) au cours des
+    trois derniers mois ;
+  \item toutes les semaines, on édite la liste des emprunteurs en retard : nom
+    et adresse de l'adhérent, date de l'emprunt, numéro(s) et titre du (des)
+    livre(s) concerné(s) ;
+  \item on veut enfin pourvoir connaître pour chaque livre la date d'achat et
+    son état.
+\end{itemize}
+               
+\begin{enumerate}
+  \item Élaborez un diagramme entité-association pour cette base. 
+    \ifcorrection
+  \begin{center}
+    \includegraphics[width=\linewidth]{td2ex3.png}
+  \end{center}
+    \fi
+  \item Donner un schéma relationnel de cette base.
+    \ifcorrection
+
+\texttt{Livre (\underline{Numéro Livre}, Titre, Date d'achat, État, \#Numéro éditeur, \#Numéro adhérent, Date d'emprunt)}
+
+\texttt{Adhérent (\underline{Numéro Adhérent}, Adresse d'adhésion, \#Numéro personne)}
+
+\texttt{Personne (\underline{Numéro Personne}, Nom, Prénom)}
+
+\texttt{Être auteur (\underline{\#Numéro Livre, \#Numéro Personne})}
+    \fi
+  \item Peut-on utiliser une seule relation contenant tous les attributs ? Pourquoi ?
+    \ifcorrection
+
+En pratique, il est possible d'utiliser une seule relation contenant tous les
+attributs pour stocker les informations. Toutefois, ce choix est à éviter car
+il serait à l'origine de nombreuses rendondances. Par exemple, à chaque fois que
+l'on voudrait ajouter une livre dans la base, il faudrait répéter les noms et
+prénom de l'éditeur, ou encore pour chaque livre emprunté par un adhérent,
+l'adresse de l'adhérent serait répétée dans la base.
+
+Pour obtenir un schéma sans redondance, une manière de procéder consiste à
+partir d'une relation contenant tous les attribus et à la décomposer
+successivement en plusieurs relations (par exemple, en commençant par extraire
+des sous-relations correspondant à des entités).
+
+Enfin, les règles de \emph{normalisation} permettent de s'assurer que notre schéma est sans
+redondances.
+\fi
+\end{enumerate}
+
+% \section{Élèves-matières}
+
+% Soit le schémas relationnel suivant (les clés primaires sont \underline{soulignées avec une ligne droite}, les clés
+% étrangères sont précédées du symbole \og \# \fg) qui représente des élèves,
+% des matières et le fait que des élèves suivent des matières.
+% % TODO : commentaires sur la notation en #.
+
+
+
+% \texttt{Élève (\underline{Numéro\_Élève}, Nom\_Élève, Prénom\_Élève)}
+
+% \texttt{Matière (\underline{Numéro\_Matière}, Nom\_Matière)}
+
+% \texttt{Suivre (\underline{\#Numéro\_Élève, \#Numéro\_Matière})}
+
+% Écrire en algèbre relationnelle les requêtes suivantes :
+
+% \begin{enumerate}
+%   \item Donner la liste des matières suivies par un étudiant qui s'appelle Jean
+%     Dupont.
+%     \ifcorrection
+%     $$\Pi_{\text{Nom\_Matière}}(\sigma_{(\text{Prénom\_Élève = 'Jean'}) \text{ et } (\text{Nom\_Élève = 'Dupont'})}(\text{Élève} \Join \text{Suivre} \Join \text{Matière}))$$
+%     \fi
+%   \item Donner le nom et prénom des élèves qui suivent le cours de Bases de Données.
+%     \ifcorrection
+%     $$\Pi_{\text{Prénom\_Élève, Nom\_Élève}}(\sigma_{\text{Nom\_Matière = 'SGBD'}}(\text{Élève} \Join \text{Suivre} \Join \text{Matière}))$$
+%     \fi
+%   \item Donner la liste des élèves qui ont le même nom, mais pas le même prénom.  
+%     \ifcorrection
+%     $$\text{Élève E1} \Join_{(\text{E1.Nom\_Élève = E2.Nom\_Élève}) \text{ et } (\text{E1.Prénom\_Élève } \neq \text{ E2.Prénom\_Élève})} \text{Élève E2}$$
+%     \fi
+%   \item Donner la liste des élèves qui suivent tous les cours (cf. division).
+%     \ifcorrection
+%     $$\Pi_{\text{Prénom\_Élève, Nom\_Élève}}((\text{Élève} \Join \text{Suivre} \Join \text{Matière}) \div \text{Matière})$$
+%     \fi
+% \end{enumerate}
+
+
+\vfill
+\begin{figure}[htb]
+\emph{Astuce \emph{prévue mais sympa} n\up{o}2 des TDs de SGBD} :
+
+\ \\
+Vous être impatient et vous voulez connaître la signification de \emph{troisème
+forme normale} en avant première\dots\ Vous voulez tout connaître sur la SGBD
+pour pouvoir faire des supers projets!
+
+Voici l'adresse du manuel du parfait SGBDien (merci à Cyril \textsc{Gruau}):\\
+\url{ftp://ftp-developpez.com/cyril-gruau/ConceptionBD.pdf}.
+
+\ \\
+
+\emph{Hors série « culture scientifique » \emph{imprévu et un peu décalé}
+n\up{o}1 des TDs de SGBD} :
+
+\ \\
+Jean-Marc Jancovici, éminant acteur français de renommée internationnale du fait
+de son expertise en courts métrages d'action aux sénarios se déroulant
+traditionnellement en climat extrême, a sorti il y a peu, un zapping à la fois
+complet et synthétique, résumant en moins de 1h43 la série de 16 épisodes d'1h qui
+l'a rendu célèbre\footnote{Ah!\dots\ on me souffle à l'oreillette que ces
+épisodes sont disponible en ligne depuis le début de la semaine:\\
+\url{http://www.ensmp.fr/ingenieurcivil/SitesIC/Balado/Climat_som.html}.}\dots
+
+La version complète (autrement appelée \emph{version premium}) du zapping a été
+retrouvée pour la dernière fois à l'adresse suivante :\\
+\url{http://storage02.brainsonic.com/customers2/entrecom/20080227_Spie/session_1_fr_new/files/index.html}
+
+\ \\
+\flushright{À la prochaine avec les TD de SGBD !}
+\end{figure}
+
+\end{document}
