@@ -1,0 +1,103 @@
+\documentclass{beamer}
+\usepackage{listings}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{epsfig}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\include{macro}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\fd}{\longrightarrow}
+\newcommand{\fdd}{\longrightarrow}
+\newcommand{\fgg}{\longleftarrow}
+\usetheme{Singapore}
+\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{mini frames}{}
+\title{UTC504 -- Systèmes d'Information et Bases de Données}
+\subtitle{Conception d'une base de données -- MERISE}
+\author{Sébastien Fourestier}
+\date{2022}
+%\setcounter{tocdepth}{1}
+
+\lstset{
+keywords={select,from,where,and,order,by,is,not,null,group,having,desc,union,
+intersect,minus,or,as,distinct,insert,into,delete,values,commit,update,set,
+inner,outer,full,join,cross,asc,count,on,using,natural,left,create,replace,
+alter,user,identified,desc},
+keywordstyle=\bfseries,         % bold keyword
+%basicstyle=\small,
+commentstyle=\itshape,          % default
+stringstyle=\ttfamily,          % typewriter font for strings
+tabsize=2,                      % indent
+%numbers=left,                   % line numbers
+%numberstyle=\tiny,              % line numbers size
+stepnumber=2,                   % line numbers step
+numbersep=5pt,                  % line numbers sep
+inputencoding=utf8
+%mathescape=false,               % math on listings
+%extendedchars=true
+}
+%frame=single,                   % enable frame
+
+\newenvironment{slide}[1]
+{
+  \begin{frame}\frametitle{#1}
+}
+{
+  \end{frame}
+}
+
+\newcommand{\entete}
+{
+  \begin{frame}
+  \titlepage
+  \end{frame}
+}
+
+\newcommand{\plan}
+{
+  \begin{frame}
+    \frametitle{Plan}
+    \tableofcontents
+  \end{frame}
+}
+
+%\newcommand{\currentplan}
+%{
+%  \begin{frame}
+%    \frametitle{Plan}
+%    \tableofcontents[currentsection]
+%  \end{frame}
+%}
+
+%\AtBeginSubsection[]
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan}
+    \tableofcontents[currentsection]
+%    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\plan
+\input{introduction}
+\input{modele_conceptuel}
+\input{normalisation}
+\input{dependances_fonctionnelles}
+\input{modele_relationnel}
+
+\end{document}
+
