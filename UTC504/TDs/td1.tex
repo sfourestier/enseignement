@@ -1,0 +1,226 @@
+\documentclass[10pt]{article}
+
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{url}
+% to be able to resume enumerations
+\usepackage{mdwlist}
+\usepackage{url}
+% so as to print code
+\usepackage{listings}
+% various types of underlining
+\usepackage{ulem}
+\normalem
+% math environments
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{setspace}
+%\doublespace
+
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remarque}[section]
+
+%\geometry{hmargin=2cm, vmargin=2cm, lmargin=2cm, rmargin=2cm}
+\geometry{lmargin=2cm, rmargin=2cm, vmargin=2cm}
+%\pagestyle{empty}
+
+% Configuration
+% correction
+\newif\ifcorrection
+%\correctiontrue
+\correctionfalse
+
+\title{Travaux dirigés : Modèle conceptuel\footnote{Si vous trouvez des erreurs,
+que vous trouvez certaines phrases mal rédigées, qu'il manque ou qu'il y a trop
+d'informations à certains endroits, alors, vous pouvez apporter votre
+contribution via le dépôt \texttt{github} :
+\texttt{https://github.com/sfourestier/enseignement}.}
+\ifcorrection \\ Correction \fi}
+\date{}
+
+\begin{document}
+% algorithm style
+\lstset{
+keywords={select,from,where,and,order,by,is,not,null,group,having,desc,union,
+intersect,minus,or,as,distinct,insert,into,delete,values,commit,update,set},
+keywordstyle=\bfseries,         % bold keyword
+basicstyle=\small,              % print whole listing small
+commentstyle=\itshape,          % default
+stringstyle=\ttfamily,          % typewriter font for strings
+tabsize=2,                      % pellegrini's favorite number ^^
+numbers=left,                   % line numbers
+numberstyle=\tiny,              % line numbers size
+stepnumber=2,                   % line numbers step
+numbersep=5pt,                  % line numbers sep ;)
+frame=single,                   % enable frame
+mathescape=false                % math on listings
+}
+
+\maketitle
+
+\section{Cours -- élèves}
+
+Donner un schéma conceptuel d'une base de données gérant les cours et les élèves
+avec les attributs suivants : \emph{numéro du cours}, \emph{nom du cours},
+\emph{professeur responsable du cours}, \emph{numéro d'élève}, \emph{nom
+d'élève}.
+
+Commencer par mettre \emph{professeur responsable du cours} comme attribut, puis
+le transformer en entité.
+
+\ifcorrection
+\begin{center}
+\includegraphics[width=.8\textwidth]{td1ex1_1.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=.8\textwidth]{td1ex1_2.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=.8\textwidth]{td1ex1_3.png}
+\end{center}
+\fi
+
+\section{Voitures}
+
+On désire créer une base de données gérant les voitures en circulation. Elle
+pourra permettre de donner les informations suivantes :
+\begin{itemize}
+  \item à propos du propriétaire : n\up{o} INSEE, nom, prénom et adresse;
+  \item à propos du véhicule : numéro, couleur, date d'achat, marque et type.
+\end{itemize}
+
+Donner un schéma entité-association pour cette base de données.
+
+\ifcorrection
+\begin{center}
+\includegraphics[width=.8\textwidth]{td1ex2.png}
+\end{center}
+\fi
+\section{Facturation}
+
+Une société désire informatiser son système de facturation. Les factures
+devraient se présenter de la façon suivante :
+
+\noindent \og SOCIETE~\fg\ SARL\hfill
+FACTURE No. 12345\\
+8 Rue Châteaubriand\\
+19100 Brive-la-Gaillarde\\
+\hspace*{12cm} Brive-la-Gaillarde, le 01.09.2022\\ \\
+\begin{tabular}{|ll|}
+\hline
+{\bf Client}&\\
+Nom: & Dupond\\
+Prénom: & Jean\\
+Adresse: & 4 Avenue du Président Roosevelt\\
+Code postal: & 19 100\\
+Ville:& Brive-la-Gaillarde\\
+\hline
+\end{tabular}
+
+
+
+\begin{enumerate}
+  \item Créez un modèle conceptuel qui permet de modéliser correctement le
+    système d'information nécessaire sachant que :
+    \begin{itemize}
+      \item Un client peut bien sûr recevoir plusieurs factures, mais il est
+        uniquement considéré comme tel à partir du moment ou il reçoit sa
+        première facture.
+      \item Une facture concerne un et un seul client.
+    \end{itemize}
+  \item Le responsable de la facturation de la société désire rendre les
+    factures plus informatives. Comme un client peut acheter plusieurs articles
+    différents en même temps, la facture devrait indiquer pour chaque article le
+    numéro, un libellé, le prix unitaire, la quantité vendue et le prix total
+    pour ce type d'article.
+
+    Proposez un nouveau modèle.
+\end{enumerate}
+
+\ifcorrection
+\begin{center}
+\includegraphics[width=\textwidth]{td1ex3_1.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=\textwidth]{td1ex3_2.png}
+\end{center}
+\fi
+\section{Gestion de classes}
+
+On veut créer une base de données gérant les classes d'une école.  Elle sera
+composée des rubriques nom, prénom, adresse, n\up{o} INSEE pour chaque
+étudiant et chaque professeur; n\up{o} année (ex : 2è année BTS), date
+d'inscription, professeur responsable, matière (ex : CSI), etc. Concevoir le
+modèle entité-association correspondant.
+
+\ifcorrection
+\begin{center}
+\includegraphics[width=.8\textwidth]{td1ex4.png}
+\end{center}
+\fi
+\section{Gestion du personnel}
+
+On vous demande de concevoir un système d'information traitant de gestion de
+personnel sur le plan de l'affectation administrative (appartenance à un
+département, relations hiérarchiques), sur le plan de la charge de travail
+(répartition du travail sur différents projets) et sur le plan social (personnes
+à charge).
+
+Chaque employé a un numéro de sécurité sociale (attribut clé), un salaire, un
+nom, prénom, une adresse et des heures attribuées à un projet. Un employé peut
+avoir des personnes à charge, représentée chacune par un nom, une date de
+naissance et un lien de parenté.
+
+Un département a un numéro, un nom, une localisation et un nombre d'employés.
+
+Un projet a un numéro, un nom (l'un ou l'autre jouant le rôle de clé), et une
+localisation géographique. Au plus six personnes peuvent travailler sur le même
+projet, mais un employé peut être impliqué dans plusieurs projets.
+
+Un employé travaille dans un département et un seul, alors qu'un département
+emploie au moins un employé. Un département a un directeur et un seul alors
+qu'un employé est directeur d'au plus un département. Il est demandé de garder
+la date de début de prise de fonction de chaque direction. Chaque employé a un
+chef direct. Un projet est contrôlé par un département et un seul alors qu'un
+département contrôle au moins un projet.
+
+Donner un schéma entité-association pour cette base de
+données.
+
+\emph{Méthodologie conseillée} : trouver les entités puis les associations
+et enfin les cardinalités.
+
+\ifcorrection
+\begin{center}
+\includegraphics[width=\textwidth]{td1ex5.png}
+\end{center}
+\fi
+\vfill
+
+\emph{Astuce \emph{improbable} n\up{o}1 des TDs de Systèmes d'Information et
+Bases de Données} :
+
+\ \\
+Vous venez de finir un super rapport de projet, il vous reste beaucoup de temps
+avant la date de rendu et vous vous demandez comment encore améliorer la qualité
+de ce dernier !
+Avec Jacques \textsc{André} $\textregistered$ tout est possible\dots\ Vous trouverez à
+l'adresse suivante ses multiples recettes pour donner à votre rapport une forme
+parfaite\dots\\ \url{http://jacques-andre.fr/faqtypo/lessons.pdf}.
+
+\ \\
+\flushright{À bientôt pour l'astuce n\up{o}2 !}
+
+\end{document}
