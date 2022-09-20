@@ -1,0 +1,75 @@
+\documentclass[a4,12pt]{article}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{url}
+%\voffset=-3.cm
+%\hoffset=-0.4cm
+%\textwidth=16.5cm
+%\textheight=24.5cm
+%\evensidemargin=+15mm
+%\pagestyle{empty}
+
+\title{\underline{Projet UTC504: Rencontres de basket-ball}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+L'objectif du projet est de mettre en {\oe}uvre, sur un cas pratique, les
+notions vues dans le module UTC504 à propos de Merise. Il s'agit de réaliser un
+système d'information permettant de gérer des rencontrer de basket-ball.
+
+Dans le cadre du module UTC504, nous nous contenterons de la partie modélisation
+de ce système d'information.
+
+Si des informations sont manquantes ou ambiguës, il est possible de fixer des
+hypothèses à condition de les détailler dans le rapport. Ce projet est à
+réaliser par binôme.
+
+\subsection*{Énoncé}
+Ce projet consiste à réaliser une base de données gérant les rencontres de
+basket-ball entre les clubs d'une fédération. On dispose des informations
+suivantes:
+\begin{itemize}
+  \item Un club de basket possède un bureau (les responsables) formé d'un
+    président, d'un vice-président, d'un trésorier, d'un secrétaire, etc.
+  \item Au sein d'un même club, il existe plusieurs catégories (ex: junior,
+    cadet, benjamin, etc.). Pour une catégorie, il peut exister plusieurs
+    équipes dans le même club (ex: cadet I, cadet II).
+  \item Chaque équipe est composée de plusieurs joueurs. Une équipe a au moins
+    un entraîneur.
+  \item Un joueur a numéro de licence, un nom, un prénom, une date de naissance,
+    une adresse. On veut aussi enregistrer la date de son entrée dans le club,
+    les cumuls de points marqués et de fautes (depuis le début de la saison). Un
+    joueur peut changer d'équipe.
+  \item Pour un entraîneur, on enregistre son nom, son prénom et sa date
+    d'entrée au club. Il peut entraîner plusieurs équipes du club.
+  \item Une rencontre est caractérisée par une date et un numéro et se déroule
+    entre deux équipes. À la fin de la rencontre, on enregistre les deux scores
+    des équipes.
+\end{itemize}
+\ \\On veut stocker toutes ces informations dans la base, et pouvoir disposer des
+informations suivantes:
+\subsubsection*{Consultation}
+Informations sur les clubs, les équipes, les joueurs. Les scores des matchs
+joués à une date donnée, la liste des joueurs à une date donnée, la feuille du
+match à une date donnée, etc.\\
+Pour un club, on veut aussi le nombre de matchs gagnés, perdus ou nuls\ldots
+
+\subsubsection*{Mise à jour}
+Ajout, suppression, modification d'un joueur, d'un club, d'un match.
+
+\subsection*{Travail demandé}
+\begin{enumerate}
+    \item Réalisation du modèle conceptuel pour \emph{1er octobre}.
+    \item Réalisation du modèle relationnel pour le \emph{8 octobre}.
+\end{enumerate}
+
+\subsection*{Note}
+Une extension de ce projet ou un devoir maison (basé sur un sujet plus adapté)
+vous sera demandé pour le \emph{15 octobre} : il s'agira, à partir d'une
+description de besoins, de réaliser des diagrammes de cas d'utilisation.
+
+\end{document}
