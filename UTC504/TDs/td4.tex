@@ -1,0 +1,241 @@
+\documentclass[10pt]{article}
+
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[dvips]{graphicx}
+\usepackage{geometry}
+\usepackage{url}
+% to be able to resume enumerations
+\usepackage{mdwlist}
+\usepackage{url}
+% so as to print code
+\usepackage{listings}
+% various types of underlining
+\usepackage{ulem}
+\normalem
+% math environments
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{setspace}
+%\doublespace
+\usepackage{pxfonts} % lJoin and rJoin
+
+\newcommand\rae{$\rightarrow$ }
+\newcommand\ra{\rightarrow }
+
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remarque}[section]
+
+%\geometry{hmargin=2cm, vmargin=2cm, lmargin=2cm, rmargin=2cm}
+\geometry{lmargin=2cm, rmargin=2cm, vmargin=1cm}
+%\pagestyle{empty}
+
+% Configuration
+% correction
+\newif\ifcorrection
+\correctiontrue
+\correctionfalse
+
+%\footnote{Si vous trouvez des erreurs, que
+%vous trouvez certaines phrases mal rédigées, qu'il manque ou qu'il y a trop
+%d'informations à certains endroits, alors, je vous serai éternellement
+%reconnaissant si vous apportiez votre contribution via le dépôt subversion :
+%\texttt{svn checkout
+%svn+ssh://login@ssh.enseirb.fr/net/autre/LABRI/fouresti/svn/enseignement/sgbd/theorie}.}
+\title{Travaux dirigés : Dépendances fonctionnelles et normalisation
+\ifcorrection \\ Correction \fi}
+\date{}
+
+\begin{document}
+% algorithm style
+\lstset{
+keywords={select,from,where,and,order,by,is,not,null,group,having,desc,union,
+intersect,minus,or,as,distinct,insert,into,delete,values,commit,update,set},
+keywordstyle=\bfseries,         % bold keyword
+basicstyle=\small,              % print whole listing small
+commentstyle=\itshape,          % default
+stringstyle=\ttfamily,          % typewriter font for strings
+tabsize=2,                      % pellegrini's favorite number ^^
+numbers=left,                   % line numbers
+numberstyle=\tiny,              % line numbers size
+stepnumber=2,                   % line numbers step
+numbersep=5pt,                  % line numbers sep ;)
+frame=single,                   % enable frame
+mathescape=false                % math on listings
+}
+
+\maketitle
+
+\section{Cours}
+\begin{defn}{Dépendance fonctionelle\\}
+
+    $A$ et $B$ sont des attributs
+
+    On dit que $A \ra B$ si à toute valeur de $A$ correspond une unique valeur
+    de $B$.
+\end{defn}
+
+\begin{exmp}{Dépendance fonctionelle}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    $A$ & $B$ & $C$ \\
+    \hline
+    a & y & u \\
+    b & c & d \\
+    b & y & u \\
+    a & c & d \\
+    b & c & d \\
+    h & u & v \\
+    \hline
+ \end{tabular}
+\end{center}
+
+\begin{itemize}
+    \item $A \ra B$ ?\\Non, car :\\$a \ra y$ et $a \ra c$\\
+    \item $B \ra C$ ?\\Oui, car :\\$
+         \begin{cases}
+             y \ra u \\
+             c \ra d \\
+             u \ra v
+         \end{cases}$
+\end{itemize}
+\end{exmp}
+
+\begin{defn}{Clé\\}
+    Soit une relation $R$ avec ${A_1, \dots, A_n}$ attributs.
+
+    Soit $X$ un sous-ensemble d'attributs de $R$, $X$ est une clé ou un
+    identifiant si :
+    \begin{itemize}
+        \item Pour tous les attributs $A_i$ de $R$, $X \ra A_i$
+        \item $X$ est le plus petit élément qui détermine tous les autres,
+            c'est-à-dire,\\il n'existe pas $Y$ un sous-ensemble $X$ avec pour les
+            tous attributs de $A_i$ de $R$, $X \ra A_i$
+    \end{itemize}
+\end{defn}
+
+% \section{Fermeture transitive}
+% On considère une relation R construite sur les attributs Propriétaire, Occupant, Adresse, Noapt,
+% Nbpièces, Nbpersonnes, un nuplet (p, o, a, n, nb1, nb2) ayant la signification suivante :
+
+% la personne o habite avec nb2 personnes l'appartement de numéro n ayant nb1 pièces dont le
+% propriétaire est p.
+
+% Une analyse de cette relation nous fournit un ensemble initial E de dépendances fonctionnelles :
+
+% occupant $\rightarrow$ adresse
+
+% occupant $\rightarrow$ noapt
+
+% occupant $\rightarrow$ nbpersonnes
+
+% adresse, noapt $\rightarrow$ propriétaire
+
+% adresse, noapt $\rightarrow$ occupant
+
+% adresse, noapt $\rightarrow$ nbpièces
+
+% \begin{enumerate}
+%   \item Donner l'ensemble des dépendances fonctionnelles élémentaires engendrées
+%     par E.
+%   \item Quelles sont les clés potentielles de R ?
+% \end{enumerate}
+
+\section{Factures}
+Soit une société de publicité dont les clients règlent des factures pour des
+services rendus. La société a plusieurs agences. Le modèle relationnel de la
+base est réduit à une seule relation de schéma :
+
+Factures : \texttt{NoC, Nom, Prénom, NoF, Service, Montant, Agence}
+
+où \texttt{NoC}, \texttt{NoF}, \texttt{Nom}, \texttt{Prénom}, \texttt{Montant},
+désignent respectivement les numéros de client et de facture, les noms et
+prénoms des clients et le coût de chaque service.
+
+L'ensemble de dépendances fonctionnelles est le suivant:
+
+NoC $\rightarrow$ Nom
+
+NoC $\rightarrow$ Prénom
+
+NoF $\rightarrow$ Service
+
+NoF $\rightarrow$ NoC
+
+Service $\rightarrow$ Montant
+
+NoF $\rightarrow$ Agence.
+
+\begin{enumerate}
+  \item Donner le graphe de couverture minimale correspondant
+  \item Souligner les clés
+  \item En déduire un modèle entité-association en 3è forme normale
+  \item En déduire un nouveau modèle relationnel plus adapté
+\end{enumerate}
+
+% \section{Système de gestion de fichiers}
+% On suppose qu'un fichier n'a qu'une seule taille, qu'un seul type et n'apparaît
+% que dans un dossier. Dans les deux cas suivants :
+
+% \begin{enumerate}
+%   \item Un fichier n'a qu'un seul propriétaire (qu'une seule personne qui peut
+%     modifier le fichier).
+%   \item Un fichier peut avoir plusieurs propriétaires (plusieurs personnes
+%     peuvent modifier le fichier).
+% \end{enumerate}
+
+% Répondez aux deux questions suivantes:
+
+% \begin{enumerate}
+%   \item Est-ce que les relations FTP et FTyD sont en troisième forme
+%     normale ? Justifier.
+%   \item Soit FTPTyD = FTP $\bowtie$ FTyD. Quelle est la clé de FTPTyD? Est-ce que
+%     FTPTyD est en 3\up{è} forme normale? Justifier. Sinon quelle est la bonne
+%     décomposition (en relations qui sont en 3\up{è} forme normale, sans perte
+%     d'information, qui préserve les dépendances)?
+% \end{enumerate}
+
+
+%\vfill
+%\begin{figure}[htb]
+%\emph{Astuce \emph{prévue mais sympa} n\up{o}2 des TDs de SGBD} :
+%
+%\ \\
+%Vous être impatient et vous voulez connaître la signification de \emph{troisème
+%forme normale} en avant première\dots\ Vous voulez tout connaître sur la SGBD
+%pour pouvoir faire des supers projets!
+%
+%Voici l'adresse du manuel du parfait SGBDien (merci à Cyril \textsc{Gruau}):\\
+%\url{ftp://ftp-developpez.com/cyril-gruau/ConceptionBD.pdf}.
+%
+%\ \\
+%
+%\emph{Hors série « culture scientifique » \emph{imprévu et un peu décalé}
+%n\up{o}1 des TDs de SGBD} :
+%
+%\ \\
+%Jean-Marc Jancovici, éminant acteur français de renommée internationnale du fait
+%de son expertise en courts métrages d'action aux sénarios se déroulant
+%traditionnellement en climat extrême, a sorti il y a peu, un zapping à la fois
+%complet et synthétique, résumant en moins de 1h43 la série de 16 épisodes d'1h qui
+%l'a rendu célèbre\footnote{Ah!\dots\ on me souffle à l'oreillette que ces
+%épisodes sont disponible en ligne depuis le début de la semaine:\\
+%\url{http://www.ensmp.fr/ingenieurcivil/SitesIC/Balado/Climat_som.html}.}\dots
+%
+%La version complète (autrement appelée \emph{version premium}) du zapping a été
+%retrouvée pour la dernière fois à l'adresse suivante :\\
+%\url{http://storage02.brainsonic.com/customers2/entrecom/20080227_Spie/session_1_fr_new/files/index.html}
+%
+%\ \\
+%\flushright{À la prochaine avec les TD de SGBD !}
+%\end{figure}
+
+\end{document}

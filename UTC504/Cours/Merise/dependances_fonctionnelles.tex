@@ -17,16 +17,16 @@
 \begin{frame}
   \frametitle{Définition}
   \begin{itemize}
-    \item Un attribut $Y$ dépend fonctionnellement d'un attribut $X$ si et seulement si une valeur de $X$ induit une
-      unique valeur de $Y$
-    \item On note une dépendance fonctionnelle par une flèche simple : $$X \ra Y$$
+    \item Un attribut $B$ dépend fonctionnellement d'un attribut $A$ si et seulement si une valeur de $A$ induit une
+      unique valeur de $B$
+    \item On note une dépendance fonctionnelle par une flèche simple : $$A \ra B$$
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Transitivité}
   \begin{itemize}
-    \item Une dépendance fonctionnelle est transitive : $$\text{si } X \ra Y \text{ et } Y \ra Z \text{ alors } X \ra Z$$
+    \item Une dépendance fonctionnelle est transitive : $$\text{si } A \ra B \text{ et } B \ra C \text{ alors } A \ra C$$
     \item Exemple:\\
       si \emph{numéro commande} $\ra$ \emph{numéro client} $\ra$ \emph{nom client}\\
       alors \emph{numéro commande} $\ra$ \emph{nom client}
@@ -42,7 +42,7 @@
   \frametitle{Dépendances fonctionnelles non élémentaires}
   \begin{itemize}
     \item Dépendance fonctionnelles non élémentaire :\\
-      Un attribut $Y$ a une dépendance fonctionnelle qui repose sur la conjonction de plusieurs
+      Un attribut $B$ a une dépendance fonctionnelle qui repose sur la conjonction de plusieurs
       attributs
     \item On note une dépendance fonctionnelle non élémentaire par une flèche unique avec plusieurs points
       d'entrée (regroupés autour d'un cercle)
@@ -66,6 +66,19 @@
     \includegraphics[width=0.9\linewidth]{graphe_couverture_minimale.jpg}
   \end{center}
 \end{frame}
+
+\begin{framentitle}{Clé}
+    Soit une relation $R$ avec ${A_1, \dots, A_n}$ attributs.
+
+    Soit $X$ un sous-ensemble d'attributs de $R$, $X$ est une clé ou un
+    identifiant si :
+    \begin{itemize}
+        \item Pour tous les attributs $A_i$ de $R$, $X \ra A_i$
+        \item $X$ est le plus petit élément qui détermine tous les autres,
+            c'est-à-dire, il n'existe pas $Y$ un sous-ensemble $X$ avec pour les
+            tous attributs de $A_i$ de $R$, $X \ra A_i$
+    \end{itemize}
+\end{framentitle}
 
 %\subsection{Méthodologie}
 \begin{frame}
@@ -113,7 +126,7 @@
     \includegraphics[width=0.9\linewidth]{graphe_identifie_1.jpg}
   \end{center}
   \begin{itemize}
-    \item Étape 1 : repérer et souligner les identifiants
+    \item Étape 1 : repérer et souligner les identifiants (choisir les clés)
   \end{itemize}
 \end{frame}
 
