@@ -310,8 +310,11 @@ projetés.
   \item Comment modifier le schéma conceptuel pour indiquer qu'à un horaire
     donné, il n'y a qu'un seul film ?
     \ifcorrection
-    \\\emph{Ce n'est pas possible, il faut utiliser dans contraintes
-    d'intégrités.}
+    \\\emph{Ce n'est pas possible facilement. Certaines contraintes d'intégrités
+    ne peuvent pas être exprimées sur le modèle Entité-Association. Il faut
+    alors préciser ces contraintes d'intégrités par écrit dans un document
+    accompagnant le diagramme Entité-Association. (Elles pourront certaines fois
+    être implémentées dans la base de donnée à l'aide d'un déclencheur.)}
     \fi
 \end{enumerate}
 \section{Bibliothèque d'emprunts}
