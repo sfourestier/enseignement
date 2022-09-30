@@ -1,0 +1,62 @@
+\documentclass[14pt]{beamer}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\include{macro}
+
+\usetheme{Singapore}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{mini frames}{}
+
+\title{UTC504 -- Systèmes d'Information et Bases de Données}
+\subtitle{UML}
+\author{Sébastien Fourestier}
+\date{2022}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{framentitle}{Bibliographie}
+    \begin{itemize}
+        \item Benoît Charroux, Aomar Osmani, Yann Thierry-Mieg: UML 2, Pratique
+            de la modélisation
+        \item Livre sur UML 2.5 du CNAM  % TODO À préciser
+    \end{itemize}
+\end{framentitle}
+
+\begin{framentitle}{Correctifs}
+    \begin{itemize}
+        \item Ce cours est disponible sous licence libre sur ce dépôt github:\\
+            \small{\url{https://github.com/sfourestier/enseignement}}
+        \item[\ra] Voici pouvez :
+            \begin{itemize}
+                \item L'améliorer en proposant des \emph{Pull requests}
+                \item Partager autour de points pouvant être améliorés en créant des
+                    tickets (\emph{Issues})
+            \end{itemize}
+    \end{itemize}
+\end{framentitle}
+
+\begin{frame}
+    \frametitle{Plan}
+    \tableofcontents
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan}
+    \tableofcontents[currentsection]
+%    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\section{Introduction}
+
+% présentation à partir des photos de UML 2
+
+% prise de recul avec les retours d'expérience du livre UML 2.5 du CNAM
