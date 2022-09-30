@@ -22,7 +22,10 @@
 
 \begin{framentitle}{Bibliographie}
     \begin{itemize}
-        \item TODO
+        \item Benoît Charroux, Aomar Osmani, Yann Thierry-Mieg: UML 2, Pratique
+            de la modélisation  % photos agiles
+        \item Laurent Debrauwer, Fien Van Der Heyde: UML 2.5, Ilitiation,
+            exemples et exercices corrigés
     \end{itemize}
 \end{framentitle}
 
@@ -55,9 +58,181 @@
 
 \section{Introduction}
 
-\begin{framentitle}{Introduction}
+\begin{framentitle}{Historique}
+    UML (Unified Modeling Language) est basé sur l'approche objet
+    \begin{itemize}
+        \item 1960: Simula, premier langage objet
+        \item 1996: Booch, Rumbaugh, Jacobson : UML 0.9
+        \item 1997: Booch, Rumbaugh, Jacobson : UML 1.0
+        \item 1997: OMG (Open Management Group) : UML 1.1
+        \item 2003: UML 1.5
+            \begin{itemize}
+                \item Possiblité de décrire des actions
+            \end{itemize}
+        \item 2005: UML 2.0
+            \begin{itemize}
+                \item Première évolution majeure depuis 1.0
+                \item Nouveaux diagrammes et diagrammes existants enrichis
+            \end{itemize}
+        \item 2015: UML 2.5
+            \begin{itemize}
+                \item Possibilité de présenter les attributs et méthodes
+                    héritées d'une classe
+            \end{itemize}
+    \end{itemize}
+\end{framentitle}
+
+
+\begin{framentitle}{UML}
+    \begin{itemize}
+        \item UML est utilisé lors de la phase d'analyse et de conception
+            préliminaire des systèmes
+        \item Il sert à spécifier les fonctionnalités uttendues du système
+            (diagramme de cas d'utilisation et de séquence)
+        \item à décrire l'architecture (diagramme de classes)
+        \item La partie comportementale (diagramme d'activité et d'états) est
+            moins utilisée. Souvent, une description textuelle informelle est
+            utilisée, elle peut être accompagnée de ces diagrammes.
+        \item Les utilisateurs utilisent surtout UML pour les phases
+            préliminaires.
+        \item L'objectif de l'OMG est de proposer un paradigme guidé par des
+            modèles décrivant à la fois le codage, la gestion de la qualité, les
+            tests et vérifications, et la production de la documentation
+    \end{itemize}
+\end{framentitle}
+
+
+\begin{framentitle}{Le processus unifié}
+    \begin{itemize}
+        \item Processus de réalisation ou d'évolution de logiciels entièrement
+            basé sur UML
+        \item Mêmes auteurs qu'UML, mais on peut utiliser UML sans le pnocessus
+            unifié
+        \item Le processus unifié est piloté par les cas d'utilisation, qui
+            permettent de décrire les exigences du projet
+        \item Cycle de développement
+            \begin{enumerate}
+                \item Inspection (évaluation du projet): analyse financière,
+                    principaux cas d'utilisation, ébauche d'architecture
+                \item Élaboration: définition final des exigences et de
+                    l'architecture du projet
+                \item Construction: développement du logiciel
+                \item Transition: déploiement du logiciel chez le client,
+                    formation des utilisateurs
+            \end{enumerate}
+    \end{itemize}
+\end{framentitle}
+
+\begin{framentitle}{Le processus unifié}
+    \begin{itemize}
+        \item Chaque phase est détaillée par un ensemble d'activités.
+        \item Une activité est un ensemble d'actions décrit par un diagramme
+            d'activité
+        \item Un dictionnaire très riche de modèles d'activités et de cas
+            d'utilisation est fourni
+        \item Principales activités:
+            \begin{itemize}
+                \item Modélisation des processus métiers
+                \item Gestion des exigences
+                \item Analyse et conception
+                \item Implantation et test
+                \item Déploiement
+            \end{itemize}
+
+        \item Le processus est pensé comme un processus itératif dans le sens où
+            il découpe le problème global en sous-parties
+        \item Autre possibliité: UML est bien adapté aux processus itératifs
+            guidés par les besoins des utilisateurs, il peut donc être utilisé
+            avec les méthodes agiles
+    \end{itemize}
+\end{framentitle}
+
+
+
+\begin{framentitle}{Modèles}
+    \begin{itemize}
+        \item Un modèle est une représentation simple de la réalité
+        \item Il s'exprime sous une forme simple et pratique pour le travail
+        \item Lorsqu'il devient compliqué, il est souhaitable de le décomposer
+            en plusieurs modèles simples
+        \item Quelques usages:
+            \begin{itemize}
+                \item Décomposer un système complexe en sous-parties
+                \item Décrire avec précision les besoins sans connaître les
+                    détails du système
+                \item Réduit les coûts lors du choix de l'approche permettant de
+                    résoudre un problème
+            \end{itemize}
+    \end{itemize}
+\end{framentitle}
+
+
+\begin{framentitle}{Liste des diagrammes}
+    \begin{itemize}
+        \item Cas d'utilisation
+        \item Diagramme de classes
+        \item Diagramme d'interaction
+        \item Diagramme d'états-transitions
+        \item Diagramme d'activités
+        \item TODO à compléter
+    \end{itemize}
+\end{framentitle}
+
+
+\begin{framentitle}{Cas d'utilisation}
+    \begin{itemize}
+        \item Ils permettent de décrire des exigences attendues lors de la
+            rédaction du cahier des charges d'un système, ou les fonctionnalités
+            d'un système existant
+        \item L'ensemble des cas d'utilisation d'un système contient les
+            exigences fonctionnelles attendues ou existantes, les acteurs (les
+            acteurs décrivent le rôle que prennent les utilisateurs du système)
+            ainsi que les associations qui unissent acteurs et fonctionnalités.
+            Cet ensemble détermine également les frontières du système, à savoir
+            les fonctionnalités remplies par le système et celles qui lui sont
+            externes
+        \item Les cas d'utilisation servent de support pour les étapes de
+            modélisation, de développement et de validation. Ils constituent un
+            référentiel du dialogue entre les informaticiens et leurs clients et,
+            par conséquent, une base pour l'élaboration au niveau fonctionnel du
+            cahier des charges
+    \end{itemize}
+\end{framentitle}
+
+
+\begin{framentitle}{Définition}
+    \begin{itemize}
+        \item «~Entre un acteur et le système, un cas d'utilisation décrit les
+            actions et interactions liées à un objectif fonctionnel de
+            l'acteur~»
+        \item Nous allons l'approfondir en TD
+    \end{itemize}
+\end{framentitle}
+
+
+\begin{framentitle}{Diagramme de classe}
+    \begin{itemize}
+        \item TODO compléter avec le cours de laurent-audibert sur
+            developpez.com
+    \end{itemize}
+\end{framentitle}
+
+\begin{framentitle}{Diagramme d'interaction}
     \begin{itemize}
         \item TODO
     \end{itemize}
 \end{framentitle}
+
+\begin{framentitle}{Diagramme d'états-transitions}
+    \begin{itemize}
+        \item TODO
+    \end{itemize}
+\end{framentitle}
+
+\begin{framentitle}{Diagramme d'activités}
+    \begin{itemize}
+        \item TODO
+    \end{itemize}
+\end{framentitle}
+
 
