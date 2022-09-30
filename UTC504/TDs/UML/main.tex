@@ -1,0 +1,118 @@
+% \documentclass[10pt]{article}
+\documentclass[10pt]{article}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{url}
+% to be able to resume enumerations
+\usepackage{mdwlist}
+\usepackage{url}
+% so as to print code
+\usepackage{listings}
+% various types of underlining
+\usepackage{ulem}
+\normalem
+% math environments
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{setspace}
+%\doublespace
+
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remarque}[section]
+
+
+\geometry{hmargin=2cm, vmargin=2cm, lmargin=2cm, rmargin=2cm}
+%\pagestyle{empty}
+
+% Configuration
+% correction
+\newif\ifcorrection
+%\correctiontrue
+\correctionfalse
+
+
+\title{Travaux dirigés : UML --- Cas d'utilisation\footnote{Si vous trouvez des erreurs,
+que vous trouvez certaines phrases mal rédigées, qu'il manque ou qu'il y a trop
+d'informations à certains endroits, alors, vous pouvez apporter votre
+contribution via le dépôt \texttt{github} :
+\texttt{https://github.com/sfourestier/enseignement}.}
+\ifcorrection \\ Correction \fi}
+\date{}
+
+\begin{document}
+% algorithm style
+\lstset{
+keywords={select,from,where,and,order,by,is,not,null,group,having,desc,union,
+intersect,minus,or,as,distinct,insert,into,delete,values,commit,update,set},
+keywordstyle=\bfseries,         % bold keyword
+basicstyle=\small,              % print whole listing small
+commentstyle=\itshape,          % default
+stringstyle=\ttfamily,          % typewriter font for strings
+tabsize=2,                      % pellegrini's favorite number ^^
+numbers=left,                   % line numbers
+numberstyle=\tiny,              % line numbers size
+stepnumber=2,                   % line numbers step
+numbersep=5pt,                  % line numbers sep ;)
+frame=single,                   % enable frame
+mathescape=false                % math on listings
+}
+
+\maketitle
+
+\input{cours}
+\input{pratique}
+
+% TODO supprimer cet exemple de code
+% \section{Schéma entité-association}
+
+% Vous disposez du schéma relationnel suivant :
+
+% \begin{itemize}
+%   \item Les schémas des relations :
+%     \begin{verbatim}
+%     ACTEUR (NUMERO_ACTEUR, NOM_ACTEUR, PRENOM_ACTEUR, NATION_ACTEUR, DATE_DE_NAISSANCE) 
+%     ROLE (NUMERO_ACTEUR, NUMERO_FILM, NOM_DU_ROLE)
+%     FILM (NUMERO_FILM, TITRE_FILM, DATE_DE_SORTIE, DUREE, GENRE, NUMERO_REALISATEUR)
+%     REALISATEUR (NUMERO_REALISATEUR, NOM_REALISATEUR, PRENOM_REALISATEUR, NATION_REALISATEUR)
+%     \end{verbatim}
+%   \item Les contraintes de clés (primaires) :
+%     \begin{itemize}
+%       \item L'attribut \texttt{ACTEUR.NUMERO\_ACTEUR} est la clé de la relation
+%         \texttt{ACTEUR}.
+%       \item Le couple d'attributs (\texttt{ROLE.NUMERO\_ACTEUR},
+%         \texttt{ROLE.NUMERO\_FILM}) est la clé de la relation \texttt{ROLE}.
+%       \item L'attribut \texttt{FILM.NUMERO\_FILM} est la clé de la relation
+%         \texttt{FILM}.
+%       \item L'attribut \texttt{REALISATEUR.NUMERO\_REALISATEUR} est la clé de la
+%         relation \texttt{REALISATEUR}.
+%     \end{itemize}
+%   \item Les contraintes d'intégrité référentielles :
+%     \begin{itemize}
+%       \item \texttt{ROLE.NUMERO\_FILM} référence \texttt{FILM.NUMERO\_FILM}.
+%       \item \texttt{ROLE.NUMERO\_ACTEUR} référence \texttt{ACTEUR.NUMERO\_ACTEUR}.
+%       \item \texttt{FILM.NUMERO\_REALISATEUR} référence
+%         \texttt{REALISATEUR.NUMERO\_REALISATEUR}.
+%     \end{itemize}
+% \end{itemize}
+
+% \textbf{Question 1}~\emph{Donnez le schéma entité-association correspondant à ce
+% schéma relationnel\footnote{Le diagramme entité-association proposé en
+% correction a été réalisé grâce au logiciel libre AnalyseSI:
+% \url{https://launchpad.net/analysesi}.}.}
+
+% \ifcorrection
+% \begin{center}
+% \end{picture}
+% \end{center} \fi
+
+\end{document}
